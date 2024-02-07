@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5095F4312B75212C0085EABA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F4302B75212C0085EABA /* main.swift */; };
+		5095F4352B75212D0085EABA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5095F4342B75212D0085EABA /* Assets.xcassets */; };
+		5095F4512B7538160085EABA /* DockTileHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F4502B7538160085EABA /* DockTileHolderView.swift */; };
+		5095F4532B7538290085EABA /* NoneInteractWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F4522B7538290085EABA /* NoneInteractWindow.swift */; };
+		5095F4552B75389E0085EABA /* DockRenderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F4542B75389E0085EABA /* DockRenderController.swift */; };
+		5095F4572B7538CB0085EABA /* DockRenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F4562B7538CB0085EABA /* DockRenderViewController.swift */; };
+		5095F4592B7539570085EABA /* DockCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F4582B7539570085EABA /* DockCanvasView.swift */; };
+		5095F45C2B753C600085EABA /* ColorfulX in Frameworks */ = {isa = PBXBuildFile; productRef = 5095F45B2B753C600085EABA /* ColorfulX */; };
+		5095F45F2B75430E0085EABA /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 5095F45E2B75430E0085EABA /* Pow */; };
+		5095F4692B7554330085EABA /* FireworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F4682B7554330085EABA /* FireworkView.swift */; };
+		5095F46B2B7554630085EABA /* Shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 5095F46A2B7554630085EABA /* Shader.metal */; };
+		5095F46D2B7554C70085EABA /* FireworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F46C2B7554C70085EABA /* FireworkController.swift */; };
+		5095F46F2B7554F10085EABA /* FireworkEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F46E2B7554F10085EABA /* FireworkEmitter.swift */; };
+		5095F4712B755A310085EABA /* FireworkRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F4702B755A310085EABA /* FireworkRenderer.swift */; };
+		5095F4732B755A4E0085EABA /* EmitterControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F4722B755A4E0085EABA /* EmitterControl.swift */; };
+		50BE80ED2B756B730079BF7D /* Sparkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BE80EC2B756B730079BF7D /* Sparkle.swift */; };
+		50BE80EF2B756FC60079BF7D /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BE80EE2B756FC60079BF7D /* ViewModel.swift */; };
+		50BE80F12B75736E0079BF7D /* DimmedWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BE80F02B75736E0079BF7D /* DimmedWindow.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5095F42D2B75212C0085EABA /* FireBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5095F4302B75212C0085EABA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		5095F4342B75212D0085EABA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5095F4392B75212D0085EABA /* FireBox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FireBox.entitlements; sourceTree = "<group>"; };
+		5095F4502B7538160085EABA /* DockTileHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockTileHolderView.swift; sourceTree = "<group>"; };
+		5095F4522B7538290085EABA /* NoneInteractWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoneInteractWindow.swift; sourceTree = "<group>"; };
+		5095F4542B75389E0085EABA /* DockRenderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockRenderController.swift; sourceTree = "<group>"; };
+		5095F4562B7538CB0085EABA /* DockRenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockRenderViewController.swift; sourceTree = "<group>"; };
+		5095F4582B7539570085EABA /* DockCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockCanvasView.swift; sourceTree = "<group>"; };
+		5095F4682B7554330085EABA /* FireworkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireworkView.swift; sourceTree = "<group>"; };
+		5095F46A2B7554630085EABA /* Shader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shader.metal; sourceTree = "<group>"; };
+		5095F46C2B7554C70085EABA /* FireworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireworkController.swift; sourceTree = "<group>"; };
+		5095F46E2B7554F10085EABA /* FireworkEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireworkEmitter.swift; sourceTree = "<group>"; };
+		5095F4702B755A310085EABA /* FireworkRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireworkRenderer.swift; sourceTree = "<group>"; };
+		5095F4722B755A4E0085EABA /* EmitterControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmitterControl.swift; sourceTree = "<group>"; };
+		50BE80EC2B756B730079BF7D /* Sparkle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sparkle.swift; sourceTree = "<group>"; };
+		50BE80EE2B756FC60079BF7D /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		50BE80F02B75736E0079BF7D /* DimmedWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmedWindow.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5095F42A2B75212C0085EABA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5095F45C2B753C600085EABA /* ColorfulX in Frameworks */,
+				5095F45F2B75430E0085EABA /* Pow in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5095F4242B75212C0085EABA = {
+			isa = PBXGroup;
+			children = (
+				5095F42F2B75212C0085EABA /* FireBox */,
+				5095F42E2B75212C0085EABA /* Products */,
+				5095F43F2B7521640085EABA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		5095F42E2B75212C0085EABA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5095F42D2B75212C0085EABA /* FireBox.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5095F42F2B75212C0085EABA /* FireBox */ = {
+			isa = PBXGroup;
+			children = (
+				5095F4392B75212D0085EABA /* FireBox.entitlements */,
+				5095F4342B75212D0085EABA /* Assets.xcassets */,
+				5095F4302B75212C0085EABA /* main.swift */,
+				50BE80EE2B756FC60079BF7D /* ViewModel.swift */,
+				5095F4522B7538290085EABA /* NoneInteractWindow.swift */,
+				5095F4502B7538160085EABA /* DockTileHolderView.swift */,
+				5095F4542B75389E0085EABA /* DockRenderController.swift */,
+				5095F4562B7538CB0085EABA /* DockRenderViewController.swift */,
+				5095F4582B7539570085EABA /* DockCanvasView.swift */,
+				50BE80F02B75736E0079BF7D /* DimmedWindow.swift */,
+				50BE80EC2B756B730079BF7D /* Sparkle.swift */,
+				5095F4722B755A4E0085EABA /* EmitterControl.swift */,
+				5095F4682B7554330085EABA /* FireworkView.swift */,
+				5095F4702B755A310085EABA /* FireworkRenderer.swift */,
+				5095F46C2B7554C70085EABA /* FireworkController.swift */,
+				5095F46E2B7554F10085EABA /* FireworkEmitter.swift */,
+				5095F46A2B7554630085EABA /* Shader.metal */,
+			);
+			path = FireBox;
+			sourceTree = "<group>";
+		};
+		5095F43F2B7521640085EABA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5095F42C2B75212C0085EABA /* FireBox */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5095F43C2B75212D0085EABA /* Build configuration list for PBXNativeTarget "FireBox" */;
+			buildPhases = (
+				5095F4292B75212C0085EABA /* Sources */,
+				5095F42A2B75212C0085EABA /* Frameworks */,
+				5095F42B2B75212C0085EABA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FireBox;
+			packageProductDependencies = (
+				5095F45B2B753C600085EABA /* ColorfulX */,
+				5095F45E2B75430E0085EABA /* Pow */,
+			);
+			productName = FireBox;
+			productReference = 5095F42D2B75212C0085EABA /* FireBox.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5095F4252B75212C0085EABA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					5095F42C2B75212C0085EABA = {
+						CreatedOnToolsVersion = 15.2;
+					};
+				};
+			};
+			buildConfigurationList = 5095F4282B75212C0085EABA /* Build configuration list for PBXProject "FireBox" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5095F4242B75212C0085EABA;
+			packageReferences = (
+				5095F45A2B753C600085EABA /* XCRemoteSwiftPackageReference "ColorfulX" */,
+				5095F45D2B75430E0085EABA /* XCRemoteSwiftPackageReference "Pow" */,
+			);
+			productRefGroup = 5095F42E2B75212C0085EABA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5095F42C2B75212C0085EABA /* FireBox */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5095F42B2B75212C0085EABA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5095F4352B75212D0085EABA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5095F4292B75212C0085EABA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5095F46F2B7554F10085EABA /* FireworkEmitter.swift in Sources */,
+				50BE80F12B75736E0079BF7D /* DimmedWindow.swift in Sources */,
+				5095F4512B7538160085EABA /* DockTileHolderView.swift in Sources */,
+				5095F4592B7539570085EABA /* DockCanvasView.swift in Sources */,
+				5095F4572B7538CB0085EABA /* DockRenderViewController.swift in Sources */,
+				5095F4532B7538290085EABA /* NoneInteractWindow.swift in Sources */,
+				50BE80ED2B756B730079BF7D /* Sparkle.swift in Sources */,
+				50BE80EF2B756FC60079BF7D /* ViewModel.swift in Sources */,
+				5095F4732B755A4E0085EABA /* EmitterControl.swift in Sources */,
+				5095F4552B75389E0085EABA /* DockRenderController.swift in Sources */,
+				5095F4692B7554330085EABA /* FireworkView.swift in Sources */,
+				5095F46B2B7554630085EABA /* Shader.metal in Sources */,
+				5095F4712B755A310085EABA /* FireworkRenderer.swift in Sources */,
+				5095F46D2B7554C70085EABA /* FireworkController.swift in Sources */,
+				5095F4312B75212C0085EABA /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		5095F43A2B75212D0085EABA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5095F43B2B75212D0085EABA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		5095F43D2B75212D0085EABA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FireBox/FireBox.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = FireBox;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = wiki.qaq.FireBox;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		5095F43E2B75212D0085EABA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FireBox/FireBox.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = FireBox;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = wiki.qaq.FireBox;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5095F4282B75212C0085EABA /* Build configuration list for PBXProject "FireBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5095F43A2B75212D0085EABA /* Debug */,
+				5095F43B2B75212D0085EABA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5095F43C2B75212D0085EABA /* Build configuration list for PBXNativeTarget "FireBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5095F43D2B75212D0085EABA /* Debug */,
+				5095F43E2B75212D0085EABA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5095F45A2B753C600085EABA /* XCRemoteSwiftPackageReference "ColorfulX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Lakr233/ColorfulX";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		5095F45D2B75430E0085EABA /* XCRemoteSwiftPackageReference "Pow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EmergeTools/Pow";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5095F45B2B753C600085EABA /* ColorfulX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5095F45A2B753C600085EABA /* XCRemoteSwiftPackageReference "ColorfulX" */;
+			productName = ColorfulX;
+		};
+		5095F45E2B75430E0085EABA /* Pow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5095F45D2B75430E0085EABA /* XCRemoteSwiftPackageReference "Pow" */;
+			productName = Pow;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 5095F4252B75212C0085EABA /* Project object */;
+}
