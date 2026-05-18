@@ -25,6 +25,7 @@
 		50BE80ED2B756B730079BF7D /* Sparkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BE80EC2B756B730079BF7D /* Sparkle.swift */; };
 		50BE80EF2B756FC60079BF7D /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BE80EE2B756FC60079BF7D /* ViewModel.swift */; };
 		50BE80F12B75736E0079BF7D /* DimmedWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BE80F02B75736E0079BF7D /* DimmedWindow.swift */; };
+		81EA54C0709F3980F65D864C /* LookInsideServer in Frameworks */ = {isa = PBXBuildFile; productRef = 4E87EAC1E8B2B50B9165F1EA /* LookInsideServer */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 			files = (
 				5095F45C2B753C600085EABA /* ColorfulX in Frameworks */,
 				5095F45F2B75430E0085EABA /* Pow in Frameworks */,
+				81EA54C0709F3980F65D864C /* LookInsideServer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +130,7 @@
 			packageProductDependencies = (
 				5095F45B2B753C600085EABA /* ColorfulX */,
 				5095F45E2B75430E0085EABA /* Pow */,
+				4E87EAC1E8B2B50B9165F1EA /* LookInsideServer */,
 			);
 			productName = FireBox;
 			productReference = 5095F42D2B75212C0085EABA /* FireBox.app */;
@@ -160,6 +163,7 @@
 			packageReferences = (
 				5095F45A2B753C600085EABA /* XCRemoteSwiftPackageReference "ColorfulX" */,
 				5095F45D2B75430E0085EABA /* XCRemoteSwiftPackageReference "Pow" */,
+				A735CA80ED94865CA6B4F0D8 /* XCRemoteSwiftPackageReference "LookInside-Release" */,
 			);
 			productRefGroup = 5095F42E2B75212C0085EABA /* Products */;
 			projectDirPath = "";
@@ -368,6 +372,10 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_SOURCE_FILE_NAMES = (
+					"$(inherited)",
+					"LookInsideServer*",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = FireBox;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
@@ -422,12 +430,25 @@
 			repositoryURL = "https://github.com/EmergeTools/Pow";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.3;
+				minimumVersion = 1.0.6;
+			};
+		};
+		A735CA80ED94865CA6B4F0D8 /* XCRemoteSwiftPackageReference "LookInside-Release" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LookInsideApp/LookInside-Release.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4E87EAC1E8B2B50B9165F1EA /* LookInsideServer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A735CA80ED94865CA6B4F0D8 /* XCRemoteSwiftPackageReference "LookInside-Release" */;
+			productName = LookInsideServer;
+		};
 		5095F45B2B753C600085EABA /* ColorfulX */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5095F45A2B753C600085EABA /* XCRemoteSwiftPackageReference "ColorfulX" */;
