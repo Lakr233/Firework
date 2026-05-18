@@ -25,12 +25,12 @@
 
 特别感谢我的两位小伙伴陪我实现项目的方方面面，感谢他们的付出。
 
+## Sponsor
+
+[LookInside](https://lookinside-app.com/) helps you inspect a running iOS or macOS app UI from your Mac.
+
 ---
 
 新年快乐～
 
 砍砍和他的朋友们，版权所有。
-
-## Sponsor
-
-[LookInside](https://lookinside-app.com/) helps you inspect a running iOS or macOS app UI from your Mac.
