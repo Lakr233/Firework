@@ -30,3 +30,7 @@
 新年快乐～
 
 砍砍和他的朋友们，版权所有。
+
+## Sponsor
+
+[LookInside](https://lookinside-app.com/) helps you inspect a running iOS or macOS app UI from your Mac.
