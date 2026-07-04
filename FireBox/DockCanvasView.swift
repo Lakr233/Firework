@@ -33,7 +33,7 @@ struct DockCanvasView: View {
             ColorfulView(
                 color: $color,
                 speed: $speed,
-                frameLimit: 30
+                frameLimit: .constant(30)
             )
             .ignoresSafeArea()
             .onAppear { DispatchQueue.main.async {

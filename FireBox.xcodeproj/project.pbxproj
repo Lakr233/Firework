@@ -3,51 +3,22 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5095F4312B75212C0085EABA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F4302B75212C0085EABA /* main.swift */; };
-		5095F4352B75212D0085EABA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5095F4342B75212D0085EABA /* Assets.xcassets */; };
-		5095F4512B7538160085EABA /* DockTileHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F4502B7538160085EABA /* DockTileHolderView.swift */; };
-		5095F4532B7538290085EABA /* NoneInteractWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F4522B7538290085EABA /* NoneInteractWindow.swift */; };
-		5095F4552B75389E0085EABA /* DockRenderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F4542B75389E0085EABA /* DockRenderController.swift */; };
-		5095F4572B7538CB0085EABA /* DockRenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F4562B7538CB0085EABA /* DockRenderViewController.swift */; };
-		5095F4592B7539570085EABA /* DockCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F4582B7539570085EABA /* DockCanvasView.swift */; };
 		5095F45C2B753C600085EABA /* ColorfulX in Frameworks */ = {isa = PBXBuildFile; productRef = 5095F45B2B753C600085EABA /* ColorfulX */; };
 		5095F45F2B75430E0085EABA /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 5095F45E2B75430E0085EABA /* Pow */; };
-		5095F4692B7554330085EABA /* FireworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F4682B7554330085EABA /* FireworkView.swift */; };
-		5095F46B2B7554630085EABA /* Shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = 5095F46A2B7554630085EABA /* Shader.metal */; };
-		5095F46D2B7554C70085EABA /* FireworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F46C2B7554C70085EABA /* FireworkController.swift */; };
-		5095F46F2B7554F10085EABA /* FireworkEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F46E2B7554F10085EABA /* FireworkEmitter.swift */; };
-		5095F4712B755A310085EABA /* FireworkRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F4702B755A310085EABA /* FireworkRenderer.swift */; };
-		5095F4732B755A4E0085EABA /* EmitterControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095F4722B755A4E0085EABA /* EmitterControl.swift */; };
-		50BE80ED2B756B730079BF7D /* Sparkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BE80EC2B756B730079BF7D /* Sparkle.swift */; };
-		50BE80EF2B756FC60079BF7D /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BE80EE2B756FC60079BF7D /* ViewModel.swift */; };
-		50BE80F12B75736E0079BF7D /* DimmedWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BE80F02B75736E0079BF7D /* DimmedWindow.swift */; };
 		81EA54C0709F3980F65D864C /* LookInsideServer in Frameworks */ = {isa = PBXBuildFile; productRef = 4E87EAC1E8B2B50B9165F1EA /* LookInsideServer */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5095F42D2B75212C0085EABA /* FireBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5095F4302B75212C0085EABA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		5095F4342B75212D0085EABA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5095F4392B75212D0085EABA /* FireBox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FireBox.entitlements; sourceTree = "<group>"; };
-		5095F4502B7538160085EABA /* DockTileHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockTileHolderView.swift; sourceTree = "<group>"; };
-		5095F4522B7538290085EABA /* NoneInteractWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoneInteractWindow.swift; sourceTree = "<group>"; };
-		5095F4542B75389E0085EABA /* DockRenderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockRenderController.swift; sourceTree = "<group>"; };
-		5095F4562B7538CB0085EABA /* DockRenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockRenderViewController.swift; sourceTree = "<group>"; };
-		5095F4582B7539570085EABA /* DockCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockCanvasView.swift; sourceTree = "<group>"; };
-		5095F4682B7554330085EABA /* FireworkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireworkView.swift; sourceTree = "<group>"; };
-		5095F46A2B7554630085EABA /* Shader.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shader.metal; sourceTree = "<group>"; };
-		5095F46C2B7554C70085EABA /* FireworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireworkController.swift; sourceTree = "<group>"; };
-		5095F46E2B7554F10085EABA /* FireworkEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireworkEmitter.swift; sourceTree = "<group>"; };
-		5095F4702B755A310085EABA /* FireworkRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireworkRenderer.swift; sourceTree = "<group>"; };
-		5095F4722B755A4E0085EABA /* EmitterControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmitterControl.swift; sourceTree = "<group>"; };
-		50BE80EC2B756B730079BF7D /* Sparkle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sparkle.swift; sourceTree = "<group>"; };
-		50BE80EE2B756FC60079BF7D /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		50BE80F02B75736E0079BF7D /* DimmedWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmedWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		81F594CA2FF3E800001EAD54 /* FireBox */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = FireBox; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		5095F42A2B75212C0085EABA /* Frameworks */ = {
@@ -66,7 +37,7 @@
 		5095F4242B75212C0085EABA = {
 			isa = PBXGroup;
 			children = (
-				5095F42F2B75212C0085EABA /* FireBox */,
+				81F594CA2FF3E800001EAD54 /* FireBox */,
 				5095F42E2B75212C0085EABA /* Products */,
 				5095F43F2B7521640085EABA /* Frameworks */,
 			);
@@ -78,30 +49,6 @@
 				5095F42D2B75212C0085EABA /* FireBox.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		5095F42F2B75212C0085EABA /* FireBox */ = {
-			isa = PBXGroup;
-			children = (
-				5095F4392B75212D0085EABA /* FireBox.entitlements */,
-				5095F4342B75212D0085EABA /* Assets.xcassets */,
-				5095F4302B75212C0085EABA /* main.swift */,
-				50BE80EE2B756FC60079BF7D /* ViewModel.swift */,
-				5095F4522B7538290085EABA /* NoneInteractWindow.swift */,
-				5095F4502B7538160085EABA /* DockTileHolderView.swift */,
-				5095F4542B75389E0085EABA /* DockRenderController.swift */,
-				5095F4562B7538CB0085EABA /* DockRenderViewController.swift */,
-				5095F4582B7539570085EABA /* DockCanvasView.swift */,
-				50BE80F02B75736E0079BF7D /* DimmedWindow.swift */,
-				50BE80EC2B756B730079BF7D /* Sparkle.swift */,
-				5095F4722B755A4E0085EABA /* EmitterControl.swift */,
-				5095F4682B7554330085EABA /* FireworkView.swift */,
-				5095F4702B755A310085EABA /* FireworkRenderer.swift */,
-				5095F46C2B7554C70085EABA /* FireworkController.swift */,
-				5095F46E2B7554F10085EABA /* FireworkEmitter.swift */,
-				5095F46A2B7554630085EABA /* Shader.metal */,
-			);
-			path = FireBox;
 			sourceTree = "<group>";
 		};
 		5095F43F2B7521640085EABA /* Frameworks */ = {
@@ -126,6 +73,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				81F594CA2FF3E800001EAD54 /* FireBox */,
+			);
 			name = FireBox;
 			packageProductDependencies = (
 				5095F45B2B753C600085EABA /* ColorfulX */,
@@ -144,7 +94,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 2700;
 				TargetAttributes = {
 					5095F42C2B75212C0085EABA = {
 						CreatedOnToolsVersion = 15.2;
@@ -179,7 +129,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5095F4352B75212D0085EABA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,21 +139,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5095F46F2B7554F10085EABA /* FireworkEmitter.swift in Sources */,
-				50BE80F12B75736E0079BF7D /* DimmedWindow.swift in Sources */,
-				5095F4512B7538160085EABA /* DockTileHolderView.swift in Sources */,
-				5095F4592B7539570085EABA /* DockCanvasView.swift in Sources */,
-				5095F4572B7538CB0085EABA /* DockRenderViewController.swift in Sources */,
-				5095F4532B7538290085EABA /* NoneInteractWindow.swift in Sources */,
-				50BE80ED2B756B730079BF7D /* Sparkle.swift in Sources */,
-				50BE80EF2B756FC60079BF7D /* ViewModel.swift in Sources */,
-				5095F4732B755A4E0085EABA /* EmitterControl.swift in Sources */,
-				5095F4552B75389E0085EABA /* DockRenderController.swift in Sources */,
-				5095F4692B7554330085EABA /* FireworkView.swift in Sources */,
-				5095F46B2B7554630085EABA /* Shader.metal in Sources */,
-				5095F4712B755A310085EABA /* FireworkRenderer.swift in Sources */,
-				5095F46D2B7554C70085EABA /* FireworkController.swift in Sources */,
-				5095F4312B75212C0085EABA /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +179,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -269,6 +204,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -308,6 +244,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -325,6 +262,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
@@ -338,6 +276,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -350,7 +289,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = wiki.qaq.FireBox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -368,6 +307,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -384,7 +324,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = wiki.qaq.FireBox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -421,8 +361,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Lakr233/ColorfulX";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.1;
 			};
 		};
 		5095F45D2B75430E0085EABA /* XCRemoteSwiftPackageReference "Pow" */ = {
