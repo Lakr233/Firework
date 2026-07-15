@@ -2,7 +2,7 @@
 //  main.swift
 //  FireBox
 //
-//  Created by 秋星桥 on 2024/2/8.
+//  Created for FireBox on 2024/2/8.
 //
 
 import AppKit
@@ -29,6 +29,8 @@ let tile: NSDockTile = NSApplication.shared.dockTile
 let tileHolder = DockTileHolderView()
 
 class AppDelegate: NSObject, NSApplicationDelegate {
+    private lazy var celebrationWindowController = CelebrationWindowController()
+
     func applicationDidFinishLaunching(_: Notification) {
         tile.contentView = NSHostingView(rootView: tileHolder)
         tile.display()
@@ -37,6 +39,35 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationShouldHandleReopen(_: NSApplication, hasVisibleWindows _: Bool) -> Bool {
         FireworkEmitter.launch()
         return false
+    }
+
+    func applicationDockMenu(_: NSApplication) -> NSMenu? {
+        let menu = NSMenu()
+        let openItem = NSMenuItem(
+            title: String(localized: "Open Firework Library…"),
+            action: #selector(openCelebrationLibrary),
+            keyEquivalent: ""
+        )
+        openItem.target = self
+        menu.addItem(openItem)
+
+        let launchItem = NSMenuItem(
+            title: String(localized: "Random Launch"),
+            action: #selector(launchRandomFirework),
+            keyEquivalent: ""
+        )
+        launchItem.target = self
+        menu.addItem(launchItem)
+        return menu
+    }
+
+    @objc private func openCelebrationLibrary() {
+        celebrationWindowController.present()
+    }
+
+    @MainActor
+    @objc private func launchRandomFirework() {
+        FireworkEmitter.launch()
     }
 }
 

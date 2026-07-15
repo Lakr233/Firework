@@ -2,7 +2,7 @@
 //  EmitterControl.swift
 //  FireBox
 //
-//  Created by 秋星桥 on 2024/2/9.
+//  Created for FireBox on 2024/2/9.
 //
 
 import Foundation
@@ -23,7 +23,6 @@ struct EmitterControl {
     var emitterPosition: simd_float2
     var emitterSize: simd_float1
     var color: simd_float4
-    var color_range: simd_float4
     var duration: simd_float1
     var beginTime: simd_float1
     var sizeAttenFactor: simd_float1 = .zero

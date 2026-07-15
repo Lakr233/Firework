@@ -28,24 +28,24 @@ struct VertexOutput {
     float4 position [[position]];
     float4 color;
     float2 uv;
-    float life_time;
 };
 
 vertex VertexOutput particleVertex(const device Vertex *vertices [[buffer(0)]],
                              const device float2 &resolution [[buffer(1)]],
                              const device Particle *particles [[buffer(2)]],
-                             const device float2 &targetFrameSize [[buffer(3)]],
                              unsigned int vid [[vertex_id]],
                              unsigned int particleId [[instance_id]]) {
     Vertex v = vertices[vid];
     
     Particle p = particles[particleId];
-    float life_atten_ratio = p.left_time / p.lifetime;
+    float life_atten_ratio = saturate(p.left_time / max(p.lifetime, 0.001));
     float brightness_atten = mix(1.0, life_atten_ratio, p.brightness_atten);
     float size_atten = mix(1.0, life_atten_ratio, p.size_atten);
-    float4x4 atten_transform = float4x4(float4(size_atten, 0.0, 0.0, 0.0),
-                                        float4(0.0, size_atten, 0.0, 0.0),
-                                        float4(0.0, 0.0, size_atten, 0.0),
+    constexpr float particle_size_scale = 4.0;
+    float rendered_size = size_atten * particle_size_scale;
+    float4x4 atten_transform = float4x4(float4(rendered_size, 0.0, 0.0, 0.0),
+                                        float4(0.0, rendered_size, 0.0, 0.0),
+                                        float4(0.0, 0.0, rendered_size, 0.0),
                                         float4(0.0, 0.0, 0.0, 1.0));
     v.position = atten_transform * p.transform * v.position;
     v.position.x = ((v.position.x + p.position.x) - resolution.x / 2) / (resolution.x / 2);
@@ -53,17 +53,24 @@ vertex VertexOutput particleVertex(const device Vertex *vertices [[buffer(0)]],
     
     VertexOutput out;
     out.position = v.position;
-    out.life_time = p.lifetime;
-    out.color = p.color * brightness_atten * 2.0;
+    out.color = p.color * brightness_atten;
     out.uv = v.uv;
     return out;
 }
 
 fragment float4 particleFragment(VertexOutput in [[stage_in]],
-                                 const texture2d<float> texture [[texture(0)]]) {
-    constexpr sampler sampler;
-    float4 color = texture.sample(sampler, in.uv) * in.color;
-    return color;
+                                 constant float &maximum_edr [[buffer(0)]]) {
+    float2 point = in.uv * 2.0 - 1.0;
+    float radius_squared = dot(point, point);
+    float core = 1.0 - smoothstep(0.0, 0.12, radius_squared);
+    float glow = 1.0 - smoothstep(0.04, 1.0, radius_squared);
+    float alpha = saturate(core * 0.85 + glow * 0.55) * in.color.a;
+    float sdr_intensity = saturate(core + glow * 0.22);
+    float edr_boost = mix(1.0, maximum_edr, core);
+    float intensity = min(sdr_intensity * edr_boost, maximum_edr);
+    constexpr float exposure = 2.0;
+    float3 color = min(in.color.rgb * intensity * exposure, float3(maximum_edr));
+    return float4(color, alpha);
 }
 
 kernel void updateParticles(device Particle *particles [[buffer(0)]],

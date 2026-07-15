@@ -2,7 +2,7 @@
 //  FireworkRenderer.swift
 //  FireBox
 //
-//  Created by 秋星桥 on 2024/2/9.
+//  Created for FireBox on 2024/2/9.
 //
 
 import AppKit
@@ -38,22 +38,20 @@ class FireworkRenderer: NSObject, MTKViewDelegate {
     private var renderPipeline: MTLRenderPipelineState!
     private var computePipeline: MTLComputePipelineState!
     private var vertexBuffer: MTLBuffer!
-    private var fireworkTexture: MTLTexture!
-    private var elapsedTime = 0.0
     private var emitters: [EmitterControl] = []
     private var particleBuffer: MTLBuffer!
     private var particleCount: Int = 0
-    private var targetFrameSize: simd_float2 = .zero
     private var commandQueue: MTLCommandQueue!
     private var lastTime: CFTimeInterval = -1.0
     private var particleIdAcc = 0
+    var onBurst: ((simd_float2) -> Void)?
 
-    func setup(_ device: MTLDevice, size: CGSize) {
+    func setup(_ device: MTLDevice) {
         self.device = device
-        makeRenderPipeline(device, size: size)
+        makeRenderPipeline(device)
     }
 
-    func makeRenderPipeline(_ device: MTLDevice, size: CGSize) {
+    private func makeRenderPipeline(_ device: MTLDevice) {
         guard !isPrepared else {
             return
         }
@@ -72,8 +70,8 @@ class FireworkRenderer: NSObject, MTKViewDelegate {
         renderPipelineDescriptor.colorAttachments[0].rgbBlendOperation = .add
         renderPipelineDescriptor.colorAttachments[0].alphaBlendOperation = .add
         renderPipelineDescriptor.colorAttachments[0].sourceRGBBlendFactor = .sourceAlpha
-        renderPipelineDescriptor.colorAttachments[0].sourceAlphaBlendFactor = .sourceAlpha
-        renderPipelineDescriptor.colorAttachments[0].destinationRGBBlendFactor = .oneMinusSourceAlpha
+        renderPipelineDescriptor.colorAttachments[0].sourceAlphaBlendFactor = .one
+        renderPipelineDescriptor.colorAttachments[0].destinationRGBBlendFactor = .one
         renderPipelineDescriptor.colorAttachments[0].destinationAlphaBlendFactor = .oneMinusSourceAlpha
         renderPipelineDescriptor.vertexFunction = particleVertexFunction
         renderPipelineDescriptor.fragmentFunction = particleFragmentFunction
@@ -82,10 +80,10 @@ class FireworkRenderer: NSObject, MTKViewDelegate {
         computePipeline = try! device.makeComputePipelineState(function: updateParticlesFunction)
 
         let vertices: [Vertex] = [
-            .init(position: .init(0, 0, 0, 1), uv: .init(0, 0)),
-            .init(position: .init(1, 0, 0, 1), uv: .init(1, 0)),
-            .init(position: .init(0, 1, 0, 1), uv: .init(0, 1)),
-            .init(position: .init(1, 1, 0, 1), uv: .init(1, 1)),
+            .init(position: .init(-0.5, -0.5, 0, 1), uv: .init(0, 0)),
+            .init(position: .init(0.5, -0.5, 0, 1), uv: .init(1, 0)),
+            .init(position: .init(-0.5, 0.5, 0, 1), uv: .init(0, 1)),
+            .init(position: .init(0.5, 0.5, 0, 1), uv: .init(1, 1)),
         ]
         let vertexBuffer = vertices.withUnsafeBytes { pointer in
             device.makeBuffer(bytes: pointer.baseAddress!,
@@ -93,18 +91,10 @@ class FireworkRenderer: NSObject, MTKViewDelegate {
                               options: .storageModeManaged)
         }
         self.vertexBuffer = vertexBuffer!
-        targetFrameSize = .init(Float(size.width), Float(size.height))
         commandQueue = device.makeCommandQueue()!
         particleCount = 0
 
-        let textureLoader = MTKTextureLoader(device: device)
-        fireworkTexture = try! textureLoader.newTexture(cgImage: coreSparkle)
-
         isPrepared = true
-    }
-
-    func resize(_ size: CGSize) {
-        targetFrameSize = .init(Float(size.width), Float(size.height))
     }
 
     func addEmitters(particles: [EmitterControl]) {
@@ -128,6 +118,7 @@ class FireworkRenderer: NSObject, MTKViewDelegate {
         }
 
         if !doBirth {
+            guard emitters[idx].birthRate > 0 else { return nil }
             let minimalDeltaTime = 1.0 / emitters[idx].birthRate
             doBirth = false
                 || emitters[idx].elapsedTimeSinceLastBirth == 0
@@ -141,7 +132,7 @@ class FireworkRenderer: NSObject, MTKViewDelegate {
         return createGPUParticle(emitter: emitter, emitterId: idx, parentParticle: nil)
     }
 
-    func updateParticleSystem(_ deltaTime: Float) {
+    private func updateParticleSystem(_ deltaTime: Float) {
         var newLiveParticles: [GPUParticle] = emitters
             .indices
             .compactMap { particleSystemCheckBirth(deltaTime: deltaTime, idx: $0) }
@@ -173,6 +164,9 @@ class FireworkRenderer: NSObject, MTKViewDelegate {
             if gpuParticle.emitterId != -1 {
                 let parentEmitter = emitters[Int(gpuParticle.emitterId)]
                 guard let nextEmitters = parentEmitter.nextEmitters else { return }
+                let burstHandler = onBurst
+                onBurst = nil
+                burstHandler?(gpuParticle.position)
                 nextEmitters.forEach { emitter in
                     for _ in 0 ..< Int(emitter.birthRate) {
                         var particle = createGPUParticle(emitter: emitter, emitterId: -1, parentParticle: gpuParticle)
@@ -184,7 +178,11 @@ class FireworkRenderer: NSObject, MTKViewDelegate {
             }
         }
 
-        guard newLiveParticles.count > 0 else { return }
+        guard !newLiveParticles.isEmpty else {
+            particleBuffer = nil
+            particleCount = 0
+            return
+        }
         particleBuffer = newLiveParticles.withUnsafeBytes { pointer in
             device.makeBuffer(
                 bytes: pointer.baseAddress!,
@@ -218,21 +216,6 @@ class FireworkRenderer: NSObject, MTKViewDelegate {
         if let parent = parentParticle {
             color += parent.color
         }
-        func clamp<T: Comparable>(_ value: T, low: T, high: T) -> T {
-            min(max(value, low), high)
-        }
-        if emitter.color_range.x > 0 {
-            color.x = clamp(color.x + Float.random(in: -emitter.color_range.x ... emitter.color_range.x), low: 0.0, high: 2.0)
-        }
-        if emitter.color_range.y > 0 {
-            color.y = clamp(color.y + Float.random(in: -emitter.color_range.y ... emitter.color_range.y), low: 0.0, high: 2.0)
-        }
-        if emitter.color_range.z > 0 {
-            color.z = clamp(color.z + Float.random(in: -emitter.color_range.z ... emitter.color_range.z), low: 0.0, high: 2.0)
-        }
-        if emitter.color_range.w > 0 {
-            color.w = clamp(color.w + Float.random(in: -emitter.color_range.w ... emitter.color_range.w), low: 0.0, high: 1.0)
-        }
         let brightnessAtten = emitter.brightnessAttenFactor
         let sizeAtten = emitter.sizeAttenFactor
 
@@ -259,10 +242,9 @@ class FireworkRenderer: NSObject, MTKViewDelegate {
         // Since the view is not subject to resize, this will leave no-op.
     }
 
-    func draw(in _: MTKView) {
+    func draw(in view: MTKView) {
         guard isPrepared else { return }
 
-        guard let drawable = targetLayer?.nextDrawable() else { return }
         guard let targetLayer else { return }
         if lastTime < 0 {
             lastTime = CACurrentMediaTime()
@@ -270,11 +252,12 @@ class FireworkRenderer: NSObject, MTKViewDelegate {
         }
 
         let currentTime = CACurrentMediaTime()
-        var deltaTime = simd_float1(currentTime - lastTime)
+        var deltaTime = simd_float1(min(max(currentTime - lastTime, 0), 1.0 / 15.0))
         lastTime = currentTime
 
         updateParticleSystem(deltaTime)
         guard particleCount > 0 else { return }
+        guard let drawable = targetLayer.nextDrawable() else { return }
 
         let viewCGSize = targetLayer.frame.size
         var viewSize = simd_float2(Float(viewCGSize.width), Float(viewCGSize.height))
@@ -330,14 +313,17 @@ class FireworkRenderer: NSObject, MTKViewDelegate {
             )
         }
         renderCommandEncoder.setVertexBuffer(particleBuffer, offset: 0, index: 2)
-        withUnsafeBytes(of: &targetFrameSize) { pointer in
-            renderCommandEncoder.setVertexBytes(
-                pointer.baseAddress!,
-                length: MemoryLayout<simd_float2>.size,
-                index: 3
-            )
+        var maximumEDR = Float(
+            view.window?.screen?.maximumExtendedDynamicRangeColorComponentValue ?? 1
+        )
+        if !maximumEDR.isFinite || maximumEDR < 1 {
+            maximumEDR = 1
         }
-        renderCommandEncoder.setFragmentTexture(fireworkTexture, index: 0)
+        renderCommandEncoder.setFragmentBytes(
+            &maximumEDR,
+            length: MemoryLayout<Float>.size,
+            index: 0
+        )
         renderCommandEncoder.drawPrimitives(
             type: .triangleStrip,
             vertexStart: 0,

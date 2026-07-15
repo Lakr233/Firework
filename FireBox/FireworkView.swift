@@ -8,15 +8,23 @@
 import Cocoa
 import MetalKit
 import simd
+import SwiftUI
 
 class FireworkView: NSView {
+    private static let displayP3Colors: [simd_float3] = [
+        .init(1.00, 0.35, 0.21),
+        .init(0.22, 0.74, 0.97),
+        .init(0.75, 0.52, 0.99),
+        .init(0.20, 0.83, 0.60),
+        .init(0.98, 0.75, 0.14),
+    ]
+
     private var dummyMTKView: MTKView!
     private var metalLayer = CAMetalLayer()
     private var device: MTLDevice!
     private var renderer = FireworkRenderer()
-    private var hasSetup = false
 
-    var isPrepared: Bool { hasSetup && renderer.isPrepared }
+    var isPrepared: Bool { renderer.isPrepared }
 
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -30,19 +38,22 @@ class FireworkView: NSView {
 
     override func layout() {
         super.layout()
-        guard frame.width > 0, frame.height > 0 else { return }
-        metalLayer.frame = frame
-        setupRendererIfNeeded()
+        updateMetalLayerGeometry()
     }
 
-    private func setupRendererIfNeeded() {
-        if hasSetup { return }
-        hasSetup = true
-        renderer.setup(device, size: metalLayer.frame.size)
+    private func updateMetalLayerGeometry() {
+        guard bounds.width > 0, bounds.height > 0 else { return }
+        let scale = window?.backingScaleFactor ?? NSScreen.main?.backingScaleFactor ?? 1
+        metalLayer.frame = bounds
+        metalLayer.contentsScale = scale
+        metalLayer.drawableSize = .init(
+            width: bounds.width * scale,
+            height: bounds.height * scale
+        )
     }
 
     var rootEmitter: EmitterControl {
-        let viewSize = metalLayer.bounds.size
+        let viewSize = bounds.size
         let velocity = Float(viewSize.height) * 0.8
         let rootPosition = simd_float2(Float(viewSize.width) * 0.5, Float(viewSize.height))
         return EmitterControl(
@@ -55,8 +66,7 @@ class FireworkView: NSView {
             emitAngleRange: Float.pi * (18.0 / 180.0),
             emitterPosition: rootPosition,
             emitterSize: 4,
-            color: .init(237 / 255, 180 / 255, 154 / 255, 1),
-            color_range: .init(0.05, 0.05, 0.05, 0.1),
+            color: Self.randomLinearDisplayP3Color(),
             duration: 1.0,
             beginTime: 0.0
         )
@@ -66,15 +76,14 @@ class FireworkView: NSView {
         var emitter = EmitterControl(
             birthRate: 512,
             lifetime: 3,
-            velocity: 80,
-            velocityRange: 180,
+            velocity: 70,
+            velocityRange: 70,
             yAcceleration: -64,
             emitAngle: 0.0,
             emitAngleRange: Float.pi * 2,
             emitterPosition: .zero,
             emitterSize: 8,
             color: .zero,
-            color_range: .zero,
             duration: .zero,
             beginTime: 0.0
         )
@@ -95,7 +104,6 @@ class FireworkView: NSView {
             emitterPosition: .zero,
             emitterSize: 4.0,
             color: .zero,
-            color_range: .zero,
             duration: .zero,
             beginTime: 0.1
         )
@@ -116,21 +124,46 @@ class FireworkView: NSView {
         metalLayer.isOpaque = false
         metalLayer.wantsExtendedDynamicRangeContent = true
         metalLayer.pixelFormat = .rgba16Float
-        metalLayer.colorspace = CGColorSpace(name: CGColorSpace.itur_2100_PQ)
+        metalLayer.colorspace = CGColorSpace(name: CGColorSpace.extendedLinearDisplayP3)
         layer?.addSublayer(metalLayer)
 
-        dummyMTKView = MTKView()
+        renderer.setup(device)
+        dummyMTKView = MTKView(frame: .zero, device: device)
+        dummyMTKView.preferredFramesPerSecond = 60
         addSubview(dummyMTKView)
         dummyMTKView.delegate = renderer
         renderer.targetLayer = metalLayer
     }
 
-    func launchFireWork(atLocation: CGPoint? = nil, completion: (() -> Void)?) {
+    private static func randomLinearDisplayP3Color() -> simd_float4 {
+        let color = displayP3Colors.randomElement() ?? displayP3Colors[0]
+        return .init(
+            linearized(color.x),
+            linearized(color.y),
+            linearized(color.z),
+            1
+        )
+    }
+
+    private static func linearized(_ component: Float) -> Float {
+        if component <= 0.04045 {
+            return component / 12.92
+        }
+        return pow((component + 0.055) / 1.055, 2.4)
+    }
+
+    func launchFireWork(
+        atLocation: CGPoint? = nil,
+        message: String? = nil,
+        completion: (() -> Void)?
+    ) {
         assert(Thread.isMainThread)
-        guard isPrepared else {
+        layoutSubtreeIfNeeded()
+        guard isPrepared, bounds.width > 0, bounds.height > 0 else {
             completion?()
             return
         }
+        updateMetalLayerGeometry()
 
         var rootEmitter = rootEmitter
         if let atLocation {
@@ -138,13 +171,13 @@ class FireworkView: NSView {
                 rootEmitter.emitAngle = -Float.pi * 0.25
                 rootEmitter.velocity /= 1.5
             }
-            if abs(frame.width - atLocation.x) < 100 {
+            if abs(bounds.width - atLocation.x) < 100 {
                 rootEmitter.emitAngle = Float.pi * 1.25
                 rootEmitter.velocity /= 1.5
             }
             rootEmitter.emitterPosition = .init(
                 x: Float(atLocation.x),
-                y: Float(frame.height - atLocation.y)
+                y: Float(bounds.height - atLocation.y)
             )
         }
         rootEmitter.birthOnceMark = EmitterControl.BIRTH_ONCE
@@ -154,10 +187,44 @@ class FireworkView: NSView {
         rootEmitter.nextEmitters = [fireworkEmitter]
         rootEmitter.tailEmitters = [tailEmitter]
         particles.append(rootEmitter)
+        if let message, !message.isEmpty {
+            renderer.onBurst = { [weak self] position in
+                DispatchQueue.main.async { [weak self] in
+                    self?.showCelebration(message, centeredAt: position)
+                }
+            }
+        } else {
+            renderer.onBurst = nil
+        }
         renderer.addEmitters(particles: particles)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
             completion?()
+        }
+    }
+
+    private func showCelebration(_ message: String, centeredAt burstPosition: simd_float2) {
+        let margin: CGFloat = 40
+        let availableWidth = max(0, bounds.width - margin * 2)
+        let availableHeight = max(0, bounds.height - margin * 2)
+        guard availableWidth > 0, availableHeight > 0 else { return }
+
+        let center = CGPoint(
+            x: CGFloat(burstPosition.x),
+            y: bounds.height - CGFloat(burstPosition.y)
+        )
+        let width = min(800, availableWidth)
+        let height = min(160, availableHeight)
+        let maximumX = max(margin, bounds.width - width - margin)
+        let maximumY = max(margin, bounds.height - height - margin)
+        let originX = min(max(margin, center.x - width / 2), maximumX)
+        let originY = min(max(margin, center.y - height / 2), maximumY)
+        let hostingView = NSHostingView(rootView: CelebrationBurstView(text: message))
+        hostingView.frame = .init(x: originX, y: originY, width: width, height: height)
+        addSubview(hostingView)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            hostingView.removeFromSuperview()
         }
     }
 

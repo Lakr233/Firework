@@ -2,7 +2,7 @@
 //  FireworkController.swift
 //  Firework
 //
-//  Created by 秋星桥 on 2024/2/7.
+//  Created for FireBox on 2024/2/7.
 //
 
 import AppKit

@@ -2,7 +2,7 @@
 //  DockCanvasView.swift
 //  FireBox
 //
-//  Created by 秋星桥 on 2024/2/9.
+//  Created for FireBox on 2024/2/9.
 //
 
 import ColorfulX
@@ -10,10 +10,10 @@ import Pow
 import SwiftUI
 
 struct DockCanvasView: View {
-    @StateObject var vm = ViewModel.shared
+    @State private var vm = ViewModel.shared
 
-    @State var color: [Color] = [.red]
-    @State var speed: Double = 1.0
+    @State private var color: [Color] = [.red]
+    @State private var speed: Double = 1.0
 
     var body: some View {
         ZStack {
@@ -26,7 +26,7 @@ struct DockCanvasView: View {
         .preferredColorScheme(.dark)
     }
 
-    var content: some View {
+    private var content: some View {
         ZStack {
             Color.black
 
@@ -37,7 +37,7 @@ struct DockCanvasView: View {
             )
             .ignoresSafeArea()
             .onAppear { DispatchQueue.main.async {
-                color = ColorfulPreset.sunset.colors
+                color = ColorfulPreset.sunset.colors.map(Color.init(nsColor:))
             } }
             .changeEffect(.shine, value: vm.fireCount)
 

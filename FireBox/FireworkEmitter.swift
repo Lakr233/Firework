@@ -2,12 +2,13 @@
 //  FireworkEmitter.swift
 //  FireBox
 //
-//  Created by 秋星桥 on 2024/2/9.
+//  Created for FireBox on 2024/2/9.
 //
 
 import AppKit
 
 enum FireworkEmitter {
+    @MainActor
     static func launch() {
         let mouseLocation = NSEvent.mouseLocation
         // Pick the screen the cursor is currently on, so fireworks appear
@@ -16,7 +17,7 @@ enum FireworkEmitter {
             NSMouseInRect(mouseLocation, $0.frame, false)
         } ?? NSScreen.main
         guard let screen else { return }
-        ViewModel.shared.fireCount += 1
+        ViewModel.shared.fireCount &+= 1
 
         // FIXME: Use Combine for debouncing
         ViewModel.shared.smoke = true
@@ -50,19 +51,11 @@ enum FireworkEmitter {
             .view as? FireworkView
         else { fatalError() }
 
-        DispatchQueue.global().async {
-            let waitBegin = Date()
-            while !fireworkView.isPrepared,
-                  Date().timeIntervalSince(waitBegin) < 5
-            { usleep(50000) }
-
-            DispatchQueue.main.async {
-                dimmWindowController.dimm()
-                fireworkView.launchFireWork(atLocation: localLocation) {
-                    fireworkView.fadeOut {
-                        controller.close()
-                    }
-                }
+        dimmWindowController.dimm()
+        let message = ViewModel.shared.messages.randomElement()?.text
+        fireworkView.launchFireWork(atLocation: localLocation, message: message) {
+            fireworkView.fadeOut {
+                controller.close()
             }
         }
     }
