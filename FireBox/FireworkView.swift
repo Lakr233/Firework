@@ -208,6 +208,7 @@ class FireworkView: NSView {
         let availableWidth = max(0, bounds.width - margin * 2)
         let availableHeight = max(0, bounds.height - margin * 2)
         guard availableWidth > 0, availableHeight > 0 else { return }
+        let maximumEDRHeadroom = self.maximumEDRHeadroom
 
         let center = CGPoint(
             x: CGFloat(burstPosition.x),
@@ -219,13 +220,31 @@ class FireworkView: NSView {
         let maximumY = max(margin, bounds.height - height - margin)
         let originX = min(max(margin, center.x - width / 2), maximumX)
         let originY = min(max(margin, center.y - height / 2), maximumY)
-        let hostingView = NSHostingView(rootView: CelebrationBurstView(text: message))
+        let hostingView = NSHostingView(
+            rootView: CelebrationBurstView(
+                text: message,
+                maximumEDRHeadroom: Float(maximumEDRHeadroom)
+            )
+        )
         hostingView.frame = .init(x: originX, y: originY, width: width, height: height)
+        hostingView.wantsLayer = true
+        hostingView.layer?.contentsFormat = .RGBA16Float
+        if #available(macOS 26.0, *) {
+            hostingView.layer?.preferredDynamicRange = .high
+            hostingView.layer?.contentsHeadroom = maximumEDRHeadroom
+        } else {
+            hostingView.layer?.wantsExtendedDynamicRangeContent = true
+        }
         addSubview(hostingView)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             hostingView.removeFromSuperview()
         }
+    }
+
+    private var maximumEDRHeadroom: CGFloat {
+        let headroom = window?.screen?.maximumExtendedDynamicRangeColorComponentValue ?? 1
+        return headroom.isFinite ? max(1, headroom) : 1
     }
 
     func fadeOut(completion: (() -> Void)?) {

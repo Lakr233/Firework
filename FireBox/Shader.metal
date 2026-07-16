@@ -73,6 +73,12 @@ fragment float4 particleFragment(VertexOutput in [[stage_in]],
     return float4(color, alpha);
 }
 
+[[ stitchable ]] half4 hdrText(float2 position, half4 color, float maximum_edr) {
+    (void)position;
+    half headroom = half(max(maximum_edr, 1.0));
+    return half4(min(color.rgb * headroom, half3(headroom)), color.a);
+}
+
 kernel void updateParticles(device Particle *particles [[buffer(0)]],
                             const device float &delta_time [[buffer(1)]],
                             unsigned int index [[thread_position_in_grid]]) {

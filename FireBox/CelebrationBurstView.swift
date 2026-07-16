@@ -2,6 +2,7 @@ import SwiftUI
 
 struct CelebrationBurstView: View {
     let text: String
+    let maximumEDRHeadroom: Float
 
     @State private var isVisible = false
 
@@ -11,6 +12,11 @@ struct CelebrationBurstView: View {
             .lineLimit(1)
             .minimumScaleFactor(0.35)
             .foregroundStyle(.white)
+            .colorEffect(
+                ShaderLibrary.hdrText(
+                    .float(maximumEDRHeadroom)
+                )
+            )
             .shadow(color: .white.opacity(0.9), radius: 6)
             .shadow(color: .orange.opacity(0.85), radius: 24)
             .padding(.horizontal, 24)
@@ -18,6 +24,7 @@ struct CelebrationBurstView: View {
             .opacity(isVisible ? 1 : 0)
             .blur(radius: isVisible ? 0 : 12)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .drawingGroup(opaque: false, colorMode: .extendedLinear)
             .task {
                 await Task.yield()
                 guard !Task.isCancelled else { return }
